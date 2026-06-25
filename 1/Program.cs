@@ -26,21 +26,54 @@ namespace _1
                     }
                 }
             }
-            for (int r = 0; r < total; r++)
-            {
-                for (int c = 0; c < total; c++)
-                {
-                    if 
-                }
-            }
+            PrintArray(array, total);
+            Console.WriteLine();
 
-                    for (int r = 0; r < total; r++)
+            ProcessRows(array, total);
+
+            PrintArray(array, total);
+        }
+
+        static void PrintArray(int[,] arr, int size)
+        {
+            for (int r = 0; r < size; r++)
             {
-                for (int c = 0; c < total; c++)
+                for (int c = 0; c < size; c++)
                 {
-                    Console.Write(array[r, c] + " ");
+                    Console.Write(arr[r, c] + " ");
                 }
                 Console.WriteLine();
+            }
+        }
+        static void ProcessRows(int[,] arr, int n)
+        {
+            for (int r = 0; r < n; r++)
+            {
+                bool allOnes = true;
+                for (int c = 0; c < n; c++)
+                {
+                    if (arr[r, c] != 1)
+                    {
+                        allOnes = false;
+                        break;
+                    }
+                }
+
+                if (allOnes)
+                {
+                    for (int k = n - 1; k > 0; k--)
+                    {
+                        for (int c = 0; c < n; c++)
+                        {
+                            arr[k, c] = arr[k - 1, c];
+                        }
+                    }
+                    for (int c = 0; c < n; c++)
+                    {
+                        arr[0, c] = 0;
+                    }
+                    return;
+                }
             }
         }
     }
